@@ -5,14 +5,14 @@ include_once("../config.php");
 // Check if form is submitted for user update, then redirect to homepage after update
 if(isset($_POST['update']))
 {	
-    $id_penjual = $_POST['id_prnjual'];
+    $id_penjual = $_POST['id'];
     
-    $name=$_POST['name'];
+    $nama=$_POST['nama'];
     $no_tlp=$_POST['no_tlp'];
     $alamat=$_POST['alamat'];
         
     // update user data
-    $result = mysqli_query($mysqli, "UPDATE penjual SET name='$name',no_tlp='$no_tlp',alamat='$alamat' WHERE id_penjual=$id_penjual");
+    $result = mysqli_query($mysqli, "UPDATE penjual SET nama='$nama',no_tlp='$no_tlp',alamat='$alamat' WHERE id_penjual=$id_penjual");
     
     // Redirect to homepage to display updated user in list
     header("Location: index.php");
@@ -21,14 +21,14 @@ if(isset($_POST['update']))
 <?php
 // Display selected user data based on id
 // Getting id from url
-$id_penjual = $_GET['id_penjual'];
+$id_penjual = $_GET['id'];
  
 // Fetech user data based on id
-$result = mysqli_query($mysqli, "SELECT * FROM penjual WHERE id_penjual=$id-penjual");
+$result = mysqli_query($mysqli, "SELECT * FROM penjual WHERE id_penjual=$id_penjual");
  
 while($user_data = mysqli_fetch_array($result))
 {
-    $nama = $user_data['name'];
+    $nama = $user_data['nama'];
     $no_tlp = $user_data['no_tlp'];
     $alamat = $user_data['alamat'];
 }
@@ -57,7 +57,7 @@ while($user_data = mysqli_fetch_array($result))
                 <td><input type="text" name="alamat" value=<?php echo $alamat;?>></td>
             </tr>
             <tr>
-                <td><input type="hidden" name="id" value=<?php echo $_GET['id_penjual'];?>></td>
+                <td><input type="hidden" name="id" value=<?php echo $_GET['id'];?>></td>
                 <td><input type="submit" name="update" value="Update"></td>
             </tr>
         </table>
